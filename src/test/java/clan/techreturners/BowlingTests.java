@@ -39,4 +39,22 @@ public class BowlingTests {
         // Assert
         assertEquals(expectedFinalScore, score);
     }
+
+    @ParameterizedTest(name = "A game with 10 frames of two knocks of {0} and {1} will produce a final score of {2}")
+    @CsvSource({"5,5,150"})
+    public void checkFinalScoreForSpareFramesGameWithSameKnocksPerFrame(int firstThrow, int secondThrow, int expectedFinalScore) {
+        // Arrange
+        Bowling game = new Bowling();
+
+        // Act
+        for (int frames = 1; frames <= TOTAL_FRAMES; frames++) {
+            game.knock(firstThrow);
+            game.knock(secondThrow);
+        }
+        game.knock(firstThrow);
+        int score = game.getScore();
+
+        // Assert
+        assertEquals(expectedFinalScore, score);
+    }
 }
