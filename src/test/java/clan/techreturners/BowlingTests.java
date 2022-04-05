@@ -1,35 +1,28 @@
 package clan.techreturners;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingTests {
-    @Test
-    public void checkScoreForOpenFramesGameWithOneFrame() {
+    @ParameterizedTest(name = "{index}) Two knocks of {0} and {1} will produce a score of {2}")
+    @CsvSource(textBlock = """
+            3,4, 7
+            2,2, 4
+            6,3, 9
+            """)
+    public void checkScoreForOpenFramesGameWithOneFrame(int firstThrow, int secondThrow, int expectedScore) {
         // Arrange
         Bowling game = new Bowling();
 
         // Act
-        game.knock(3);
-        game.knock(4);
+        game.knock(firstThrow);
+        game.knock(secondThrow);
         int score = game.getScore();
 
         // Assert
-        assertEquals(7, score);
-    }
-
-    @Test
-    public void checkScoreForOpenFramesGame2WithOneFrame() {
-        // Arrange
-        Bowling game = new Bowling();
-
-        // Act
-        game.knock(2);
-        game.knock(2);
-        int score = game.getScore();
-
-        // Assert
-        assertEquals(4, score);
+        assertEquals(expectedScore, score);
     }
 }
