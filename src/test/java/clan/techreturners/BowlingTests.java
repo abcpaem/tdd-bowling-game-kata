@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingTests {
     @Test
-    public void checkScoreForOpenFrameGame() {
+    public void checkScoreForOpenFramesGameWithOneFrame() {
         // Arrange
         Bowling game = new Bowling();
 
@@ -17,5 +17,19 @@ public class BowlingTests {
 
         // Assert
         assertEquals(7, score);
+    }
+
+    @Test
+    public void checkScoreForOpenFramesGame2WithOneFrame() {
+        // Arrange
+        Bowling game = new Bowling();
+
+        // Act
+        game.knock(2);
+        game.knock(2);
+        int score = game.getScore();
+
+        // Assert
+        assertEquals(4, score);
     }
 }
