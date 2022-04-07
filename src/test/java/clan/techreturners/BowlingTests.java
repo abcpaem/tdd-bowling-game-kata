@@ -40,9 +40,9 @@ public class BowlingTests {
         assertEquals(expectedFinalScore, score);
     }
 
-    @ParameterizedTest(name = "A game with 10 frames of two knocks of {0} and {1} will produce a final score of {2}")
-    @CsvSource({"5,5,150"})
-    public void checkFinalScoreForSpareFramesGameWithSameKnocksPerFrame(int firstThrow, int secondThrow, int expectedFinalScore) {
+    @ParameterizedTest(name = "A game with spare frames of {0} and {1}, will produce a final score of {2}")
+    @CsvSource({"5,5,150", "3,7,130", "4,6,140", "9,1,190"})
+    public void checkFinalScoreForSpareFramesGame(int firstThrow, int secondThrow, int expectedFinalScore) {
         // Arrange
         Bowling game = new Bowling();
 
