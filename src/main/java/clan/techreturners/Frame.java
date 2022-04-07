@@ -16,6 +16,7 @@ public class Frame {
 
     public Frame(int pins) {
         knocks.add(pins);
+        setFrameType();
     }
 
     public Frame() {
@@ -30,7 +31,7 @@ public class Frame {
     }
 
     public Integer getFirstKnock() {
-        return knocks.size() > 1 ? knocks.get(0) : -1;
+        return knocks.size() > 0 ? knocks.get(0) : -1;
     }
 
     public void addPins(int pins) {

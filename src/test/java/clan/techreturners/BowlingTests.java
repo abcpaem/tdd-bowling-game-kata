@@ -57,4 +57,22 @@ public class BowlingTests {
         // Assert
         assertEquals(expectedFinalScore, score);
     }
+
+    @ParameterizedTest(name = "A game with all frames being \"strikes\" will produce a final score of {1}")
+    @CsvSource({"10,300"})
+    public void checkFinalScoreForAllStrikesGame(int firstThrow, int expectedFinalScore) {
+        // Arrange
+        Bowling game = new Bowling();
+
+        // Act
+        for (int frames = 1; frames <= TOTAL_FRAMES; frames++) {
+            game.knock(firstThrow);
+        }
+        game.knock(firstThrow);
+        game.knock(firstThrow);
+        int score = game.getScore();
+
+        // Assert
+        assertEquals(expectedFinalScore, score);
+    }
 }
