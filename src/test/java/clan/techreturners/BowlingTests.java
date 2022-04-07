@@ -1,78 +1,42 @@
 package clan.techreturners;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BowlingTests {
-    private final int TOTAL_FRAMES = 10;
+    private final Integer STRIKE = 10;
+    private Bowling game = new Bowling();
 
-    @ParameterizedTest(name = "{index}) Two knocks of {0} and {1} will produce a score of {2}")
-    @CsvSource({"3,4,7", "2,2,4", "6,3,9"})
-    public void checkScoreForOpenFramesGameWithOneFrame(int firstThrow, int secondThrow, int expectedScore) {
-        // Arrange
-        Bowling game = new Bowling();
-
-        // Act
-        game.knock(firstThrow);
-        game.knock(secondThrow);
-        int score = game.getScore();
-
-        // Assert
-        assertEquals(expectedScore, score);
+    @ParameterizedTest(name = "{index}) A game with {3} throws in frames of {0}, {1}, will produce a score of {2}")
+    @MethodSource
+    void checkScoreForBowlingGameInFrames(int pinsFirstThrow, int pinsSecondThrow, int expectedScore, int totalThrows) {
+        for (int i = 1; i <= totalThrows; i++) {
+            game.knock(i % 2 == 1 || pinsFirstThrow == STRIKE ? pinsFirstThrow : pinsSecondThrow);
+        }
+        assertEquals(expectedScore, game.getScore());
     }
 
-    @ParameterizedTest(name = "A game with 10 frames of two knocks of {0} and {1} will produce a final score of {2}")
-    @CsvSource({"5,2,70", "9,0,90", "2,4,60"})
-    public void checkFinalScoreForOpenFramesGameWithSameKnocksPerFrame(int firstThrow, int secondThrow, int expectedFinalScore) {
-        // Arrange
-        Bowling game = new Bowling();
-
-        // Act
-        for (int frames = 1; frames <= TOTAL_FRAMES; frames++) {
-            game.knock(firstThrow);
-            game.knock(secondThrow);
-        }
-        int score = game.getScore();
-
-        // Assert
-        assertEquals(expectedFinalScore, score);
-    }
-
-    @ParameterizedTest(name = "A game with spare frames of {0} and {1}, will produce a final score of {2}")
-    @CsvSource({"5,5,150", "3,7,130", "4,6,140", "9,1,190"})
-    public void checkFinalScoreForSpareFramesGame(int firstThrow, int secondThrow, int expectedFinalScore) {
-        // Arrange
-        Bowling game = new Bowling();
-
-        // Act
-        for (int frames = 1; frames <= TOTAL_FRAMES; frames++) {
-            game.knock(firstThrow);
-            game.knock(secondThrow);
-        }
-        game.knock(firstThrow);
-        int score = game.getScore();
-
-        // Assert
-        assertEquals(expectedFinalScore, score);
-    }
-
-    @ParameterizedTest(name = "A game with all frames being \"strikes\" will produce a final score of {1}")
-    @CsvSource({"10,300"})
-    public void checkFinalScoreForAllStrikesGame(int firstThrow, int expectedFinalScore) {
-        // Arrange
-        Bowling game = new Bowling();
-
-        // Act
-        for (int frames = 1; frames <= TOTAL_FRAMES; frames++) {
-            game.knock(firstThrow);
-        }
-        game.knock(firstThrow);
-        game.knock(firstThrow);
-        int score = game.getScore();
-
-        // Assert
-        assertEquals(expectedFinalScore, score);
+    public static Stream<Arguments> checkScoreForBowlingGameInFrames() {
+        return Stream.of(
+                // One frame
+                Arguments.of(3, 4, 7, 2),
+                Arguments.of(2, 2, 4, 2),
+                Arguments.of(6, 3, 9, 2),
+                // Open Frames
+                Arguments.of(5, 2, 70, 20),
+                Arguments.of(9, 0, 90, 20),
+                Arguments.of(2, 4, 60, 20),
+                // Spare Frames
+                Arguments.of(5, 5, 150, 21),
+                Arguments.of(4, 6, 140, 21),
+                Arguments.of(9, 1, 190, 21),
+                // Strike Frames
+                Arguments.of(10, 0, 300, 12)
+        );
     }
 }
