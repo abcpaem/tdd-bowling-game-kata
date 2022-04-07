@@ -27,7 +27,8 @@ Plan out and spend 30-45 minutes having a go at the Bowling Game Kata using Test
  
 Here you have quick overview of all the tests passing:
 
-![Bowling Tests](docs/BowlingTestsPassing.PNG)
+Click [here](https://htmlpreview.github.io/?https://github.com/abcpaem/tdd-bowling-game-kata/blob/main/docs/BowlingTestsResults.html) to have quick overview of all the tests passing.
+**Note:** If you are unable to see the tests in the above link, please try [this one](https://htmlview.glitch.me/?https://github.com/abcpaem/tdd-bowling-game-kata/blob/main/docs/BowlingTestsResults.html).
 
 Click [here](src/test/java/clan/techreturners/BowlingTests.java) to see the Bowling tests.
 
