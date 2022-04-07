@@ -38,7 +38,6 @@ Click [here](src/test/java/clan/techreturners/BowlingTests.java) to see the Bowl
 Click [here](src/main/java/clan/techreturners/Bowling.java) to see the Bowling code.
 
 ### What's next?:
-- Continue developing the solution to consider multiple combination of frames in a game.
 - Add tests for edge case scenarios.
 - Add *main* method to run the game as a console application.
 - Add message to notify when the game is over.
