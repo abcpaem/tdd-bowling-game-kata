@@ -1,4 +1,4 @@
-package clan.techreturners;
+package clan.techreturners.bowling;
 
 import java.util.ArrayList;
 

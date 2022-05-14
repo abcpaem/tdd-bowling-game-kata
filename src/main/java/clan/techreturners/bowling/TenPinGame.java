@@ -1,14 +1,14 @@
-package clan.techreturners;
+package clan.techreturners.bowling;
 
 import java.util.ArrayList;
 
-public class Bowling {
+public class TenPinGame {
     private final Integer MAX_FRAMES = 10;
     private final Integer STRIKE = 10;
     private ArrayList<Frame> frames = new ArrayList<>();
     private Integer currentFrameIndex = 0;
 
-    public Bowling() {
+    public TenPinGame() {
         frames.add(new Frame());
     }
 

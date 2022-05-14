@@ -33,9 +33,9 @@ Click [here](https://htmlpreview.github.io/?https://github.com/abcpaem/tdd-bowli
 
 **Note:** If you are unable to see the tests in the above link, please try [this one](https://htmlview.glitch.me/?https://github.com/abcpaem/tdd-bowling-game-kata/blob/main/docs/BowlingTestsResults.html).
 
-Click [here](src/test/java/clan/techreturners/BowlingTests.java) to see the Bowling tests.
+Click [here](src/test/java/clan/techreturners/bowling/TenPinGameTests.java) to see the Bowling tests.
 
-Click [here](src/main/java/clan/techreturners/Bowling.java) to see the Bowling code.
+Click [here](src/main/java/clan/techreturners/bowling/TenPinGame.java) to see the Bowling code.
 
 ### What's next?:
 - Add tests for edge case scenarios.

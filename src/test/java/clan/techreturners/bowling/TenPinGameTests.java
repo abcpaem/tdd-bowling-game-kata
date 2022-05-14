@@ -1,4 +1,4 @@
-package clan.techreturners;
+package clan.techreturners.bowling;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,13 +9,13 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BowlingTests {
+public class TenPinGameTests {
     private final Integer STRIKE = 10;
-    private Bowling game;
+    private TenPinGame game;
 
     @BeforeEach
     void Init() {
-        game = new Bowling();
+        game = new TenPinGame();
     }
 
     @ParameterizedTest(name = "{index}) A game with frames {0}, will produce a score of {1}")
